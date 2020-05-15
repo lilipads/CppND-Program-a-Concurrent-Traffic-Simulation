@@ -23,7 +23,7 @@ template <class T>
 class MessageQueue {
  public:
   void send(T &&msg);
-  //   T receive();
+  T receive();
 
  private:
   std::deque<TrafficLightPhase> _queue;
@@ -48,6 +48,7 @@ class TrafficLight : TrafficObject {
   // typical behaviour methods
   TrafficLightPhase getCurrentPhase();
   void simulate();
+  void waitForGreen();
 
  private:
   // typical behaviour methods
@@ -59,8 +60,7 @@ class TrafficLight : TrafficObject {
   // TrafficLightPhase into it by calling send in conjunction with move
   // semantics.
 
-  std::condition_variable _condition;
-  std::mutex _mutex;
+  MessageQueue<TrafficLightPhase> message_queue;
 };
 
 #endif

@@ -10,6 +10,7 @@ enum ObjectType {
   objectVehicle,
   objectIntersection,
   objectStreet,
+  objectTrafficLight
 };
 
 class TrafficObject {
@@ -31,8 +32,8 @@ class TrafficObject {
   ObjectType _type;     // identifies the class type
   int _id;              // every traffic object has its own unique id
   double _posX, _posY;  // vehicle position in pixels
-  std::vector<std::thread>
-      threads;  // holds all threads that have been launched within this object
+  // holds all threads that have been launched within this object
+  std::vector<std::thread> threads;
   static std::mutex
       _mtx;  // mutex shared by all traffic objects for protecting cout
 

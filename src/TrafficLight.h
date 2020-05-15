@@ -23,7 +23,7 @@ template <class T>
 class MessageQueue {
  public:
   void send(T &&msg);
-  T receive();
+  //   T receive();
 
  private:
   std::deque<TrafficLightPhase> _queue;
@@ -39,15 +39,15 @@ class MessageQueue {
 // the private member _currentPhase which can take „red“ or „green“ as its
 // value.
 
-class TrafficLight {
+class TrafficLight : TrafficObject {
  public:
   // constructor / desctructor
   TrafficLight();
   // getters / setters
 
   // typical behaviour methods
-  void simulate();
   TrafficLightPhase getCurrentPhase();
+  void simulate();
 
  private:
   // typical behaviour methods

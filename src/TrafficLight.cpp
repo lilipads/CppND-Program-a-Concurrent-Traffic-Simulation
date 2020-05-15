@@ -20,6 +20,9 @@ void MessageQueue<T>::send(T &&msg) {
   // std::lock_guard<std::mutex>
   // as well as _condition.notify_one() to add a new message to the queue and
   // afterwards send a notification.
+  std::lock_guard<std::mutex> lock(_mutex);
+  _queue.push_back(std::move(msg));
+  _condition.notify_one();
 }
 
 /* Implementation of class "TrafficLight" */
